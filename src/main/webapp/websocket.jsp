@@ -92,6 +92,7 @@
   
         function updateUrl(urlPath) {  
             if (urlPath.indexOf('sockjs') != -1) {  
+<<<<<<< HEAD
                 //url = urlPath;
                 if (window.location.protocol == 'http:') {  
                   url = 'http://' + window.location.host + urlPath;  
@@ -138,6 +139,49 @@
             <label for="radio1">W3C WebSocket</label>  
         <br>  
         <input id="radio2" type="radio" name="group1" onclick="updateUrl('/ws/sockjs/socketServer.ws');">  
+=======
+                url = urlPath;  
+                document.getElementById('sockJsTransportSelect').style.visibility = 'visible';  
+            }  
+            else {  
+              if (window.location.protocol == 'http:') {  
+                  url = 'ws://' + window.location.host + urlPath;  
+              } else {  
+                  url = 'wss://' + window.location.host + urlPath;  
+              }  
+              document.getElementById('sockJsTransportSelect').style.visibility = 'hidden';  
+            }  
+        }  
+  
+        function updateTransport(transport) {  
+            alert(transport);  
+          transports = (transport == 'all') ?  [] : [transport];  
+        }  
+          
+        function log(message) {  
+            var console = document.getElementById('console');  
+            var p = document.createElement('p');  
+            p.style.wordWrap = 'break-word';  
+            p.appendChild(document.createTextNode(message));  
+            console.appendChild(p);  
+            while (console.childNodes.length > 25) {  
+                console.removeChild(console.firstChild);  
+            }  
+            console.scrollTop = console.scrollHeight;  
+        }  
+    </script>  
+</head>  
+<body>  
+<noscript><h2 style="color: #ff0000">Seems your browser doesn't support Javascript! Websockets   
+    rely on Javascript being enabled. Please enable  
+    Javascript and reload this page!</h2></noscript>  
+<div>  
+    <div id="connect-container">  
+        <input id="radio1" type="radio" name="group1" onclick="updateUrl('/ws/websocket/socketServer.ws');">  
+            <label for="radio1">W3C WebSocket</label>  
+        <br>  
+        <input id="radio2" type="radio" name="group1" onclick="updateUrl('ws/sockjs/socketServer.ws');">  
+>>>>>>> branch 'master' of https://github.com/gexiaopeng/JavaWebSocket.git
             <label for="radio2">SockJS</label>  
         <div id="sockJsTransportSelect" style="visibility:hidden;">  
             <span>SockJS transport:</span>  

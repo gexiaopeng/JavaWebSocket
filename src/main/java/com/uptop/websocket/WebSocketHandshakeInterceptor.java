@@ -31,8 +31,7 @@ public class WebSocketHandshakeInterceptor implements HandshakeInterceptor {
             HttpSession session = servletRequest.getServletRequest().getSession(false);  
             if (session != null) {  
                 //使用userName区分WebSocketHandler，以便定向发送消息  
-            	///LOGGER.info("Before Handshake sessionid:{},sessioncode:{}",session.getId(),session.hashCode());
-                String userName = (String) session.getAttribute("SESSION_USERNAME");  
+                 String userName = (String) session.getAttribute("SESSION_USERNAME");  
                 if (userName == null) {  
                     userName = "system-" + session.hashCode();  
                 }  
