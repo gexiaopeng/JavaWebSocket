@@ -77,14 +77,14 @@ function webSocketSend (message) {
 	    }, 1000);
 }
     //关闭webSocket连接
-  function closewebSocket() {
+function closewebSocket() {
         tryTime=200;
         if(webSocket!=null){
            webSocket.close();
            webSocket=null;
         }
-  }
-  function waitForConnection(callback, interval) {
+ }
+ function waitForConnection(callback, interval) {
 	    if (webSocket!=null && webSocket.readyState === 1) {
 	        callback();
 	    } else {
@@ -124,7 +124,6 @@ function webSocketSend (message) {
 		if(table.rows.length>50){
 			table.deleteRow(table.rows.length-1);
 		}
-      //  document.getElementById('message').innerHTML += innerHTML + '<br/>';
-  }
+   }
 </script>
 </html>
