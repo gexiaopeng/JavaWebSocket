@@ -107,7 +107,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 	 * 
 	 * @param message 
 	 */  
-	public void sendMessageToUsers(TextMessage message) {  
+	private void sendMessageToUsers(TextMessage message) {  
 		for (WebSocketSession user : users) {  
 			try {  
 				if (user.isOpen()) {  
@@ -125,7 +125,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 	 * @param userName 
 	 * @param message 
 	 */  
-	public void sendMessageToUser(String userName, TextMessage message) {  
+	private void sendMessageToUser(String userName, TextMessage message) {  
 		for (WebSocketSession user : users) {  
 			if (user.getAttributes().get("WEBSOCKET_USERNAME").equals(userName)) {  
 				try {  

@@ -24,7 +24,7 @@
     var webSocket = null;
     var tryTime = 0;
     $(function(){
-     	setMessageInnerHTML("webSocket:"+('webSocket' in window));
+     	setMessageInnerHTML("webSocket:"+(window.WebSocket==null? false:true));
      	connectwebSocket();
     	//监听窗口关闭事件，当窗口关闭时，主动去关闭webSocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
     	window.onbeforeunload = function () {
@@ -33,9 +33,12 @@
     });
     function connectwebSocket(){
     	//判断当前浏览器是否支持webSocket
-    	if ('webSocket' in window) {  
+    	if (window.WebSocket) {  
         	//webSocket的连接  
-       		 webSocket = new WebSocket("ws://localhost:8080/ws/websocket/socketServer.ws");//webSocket对应的地址  
+        	 var ws="ws://localhost:8080/ws/springwebsocket/socketServer.ws";
+        	 ws="ws://192.168.10.34:8080/ws/javaxwebsocket/websocket.jws/1/20/gxp";
+        	 ws="ws://misc.xl9.xunlei.com:8080/ws/javaxwebsocket/websocket.jws/1/20/gxp";
+       		 webSocket = new WebSocket(ws);//webSocket对应的地址  
     	}else {  
        	 	//SockJS的连接  
         	webSocket = new SockJS("http://localhost:8080/ws/sockjs/socketServer.ws");    //SockJS对应的地址  

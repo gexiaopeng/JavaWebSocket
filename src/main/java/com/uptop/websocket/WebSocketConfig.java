@@ -23,11 +23,11 @@ import com.uptop.websocket.handler.WebSocketHandler;
 @Configuration  
 //@EnableWebMvc//这个标注可以不加，如果有加，要extends WebMvcConfigurerAdapter  
 @EnableWebSocket  
-public class WebSocketConfig extends WebMvcConfigurerAdapter implements WebSocketConfigurer {  
+public class WebSocketConfig  implements WebSocketConfigurer {  
   
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {  
         //1.注册WebSocket  
-        String websocket_url = "/websocket/socketServer.ws";                        //设置websocket的地址  
+        String websocket_url = "/springwebsocket/socketServer.ws";                        //设置websocket的地址  
         registry.addHandler(webSocketHandler(), websocket_url).                          //注册Handler  
                 addInterceptors(new WebSocketHandshakeInterceptor());                   //注册Interceptor  
   
