@@ -5,10 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">  
     <title>Java API for WebSocket (JSR-356)</title>
     <script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>  
-    <script type="text/javascript" src="js/sockjs.js"></script> 
+    <script type="text/javascript" src="js/sockjs/sockjs.js"></script> 
 </head>
 <body>
-    Welcome<br/><input id="text" type="text"/>
+    WebSocket Sockjs demo<br/><input id="text" type="text"/>
     <button onclick="send()">发送消息</button>
     <hr/>
     <button onclick="closeWebSocket()">关闭WebSocket连接</button>
