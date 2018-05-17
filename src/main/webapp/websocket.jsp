@@ -35,7 +35,7 @@
         }  
     </style>  
   
-    <script src="js/sockjs.min.js"></script>  
+    <script src="js/sockjs/sockjs.js"></script>  
   
     <script type="text/javascript">  
         var ws = null;  

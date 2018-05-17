@@ -67,7 +67,7 @@ public class WebSocketHandler extends TextWebSocketHandler {
 		users.add(session);  
 		String username = (String) session.getAttributes().get("WEBSOCKET_USERNAME");  
 		LOGGER.info("sessionId:"+session.hashCode()+",用户 " + username + " Connection Established");  
-		session.sendMessage(new TextMessage(username + " wellcome"));  
+		session.sendMessage(new TextMessage(username + " wellcome(sessionId:"+session.hashCode()+")"));  
 		//session.sendMessage(new TextMessage("hello wellcome"));  
 	}  
 
