@@ -8,7 +8,7 @@
     <script type="text/javascript" src="js/sockjs/sockjs.js"></script> 
 </head>
 <body>
-    webSocket Sockjs demo<br/><input id="text" type="text"/>
+   webSocket Sockjs demo <br/><input id="text" type="text"/>
     <button onclick="send()" id="echo" disabled="disabled">发送消息</button>
     <hr/>
     <button onclick="closewebSocket()"  id="disconnect" disabled="disabled">关闭webSocket连接</button>
@@ -16,7 +16,7 @@
     <hr/>
     <div id="message"></div>
     <table id="tb" class="altrowstable">
-		<th align="center"  colspan="9">实时信息监控</th>
+		<th align="center"  colspan="9">实时信息监控 <%=request.getSession().hashCode()%></th>
 	</table>
 </body>
 
@@ -36,8 +36,8 @@
     	if (window.WebSocket) {  
         	//webSocket的连接  
         	 var ws="ws://localhost:8080/ws/springwebsocket/socketServer.ws";
-        	 ws="ws://192.168.10.34:8080/ws/javaxwebsocket/websocket.jws/1/20/gxp";
-        	 ws="ws://misc.xl9.xunlei.com:8080/ws/javaxwebsocket/websocket.jws/1/20/gxp";
+        	// ws="ws://192.168.10.34:8080/ws/javaxwebsocket/websocket.jws/1/20/gxp";
+        	ws="ws://misc.xl9.xunlei.com:8080/ws/javaxwebsocket/websocket.jws/1/20/<%=request.getSession().hashCode()%>";
        		 webSocket = new WebSocket(ws);//webSocket对应的地址  
     	}else {  
        	 	//SockJS的连接  

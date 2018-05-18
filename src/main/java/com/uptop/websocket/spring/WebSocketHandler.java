@@ -5,8 +5,8 @@
  * @author gexp
  * @dateTime 2018年5月16日 下午3:42:21
  */
-package com.uptop.websocket.handler;
-import org.apache.log4j.chainsaw.Main;
+package com.uptop.websocket.spring;
+//import org.apache.log4j.chainsaw.Main;
 import org.slf4j.Logger;  
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;

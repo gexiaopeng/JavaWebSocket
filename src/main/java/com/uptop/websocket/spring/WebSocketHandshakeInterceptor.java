@@ -5,7 +5,7 @@
  * @author gexp
  * @dateTime 2018年5月16日 下午3:49:13
  */
-package com.uptop.websocket;
+package com.uptop.websocket.spring;
 
 import org.slf4j.Logger;  
 import org.slf4j.LoggerFactory;  

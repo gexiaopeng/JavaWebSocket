@@ -5,16 +5,14 @@
  * @author gexp
  * @dateTime 2018年5月16日 下午3:52:38
  */
-package com.uptop.websocket;
+package com.uptop.websocket.spring;
 
  
 import org.springframework.context.annotation.Bean;  
 import org.springframework.context.annotation.Configuration;  
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;  
 import org.springframework.web.socket.config.annotation.*;  
-import org.springframework.web.socket.handler.TextWebSocketHandler;
-
-import com.uptop.websocket.handler.WebSocketHandler;  
+import org.springframework.web.socket.handler.TextWebSocketHandler;  
   
 /** 
  * Spring WebSocket的配置，这里采用的是注解的方式 
