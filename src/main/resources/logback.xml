@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration
+<configuration  scan="true" scanPeriod="60 seconds"
     xmlns="http://ch.qos.logback/xml/ns/logback"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://ch.qos.logback/xml/ns/logback https://raw.githubusercontent.com/enricopulatzo/logback-XSD/master/src/main/xsd/logback.xsd">
-    <property name="LOG_HOME" value="D:/data/websocket/logs"/>
+    <!-- 应用名称 -->
+    <property name="APP_NAME" value="websocket"/>
+    <!-- 日志文件根目录 -->
+    <property name="LOG_HOME" value="D:/data/${APP_NAME}/logs"/>
     <!-- 输出到控制台 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender" >
         <!-- 输出的格式 -->
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{50}[%L]:  %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger[%L]:%msg%n</pattern>
+            <charset>utf-8</charset>
         </encoder>
     </appender>
     
@@ -18,37 +22,93 @@
             <onMatch>ACCEPT</onMatch>  <!-- 如果命中就使用这条规则 -->
             <onMismatch>DENY</onMismatch>  <!-- 如果没有命中就 禁止这条日志-->
         </filter>
-        <file>${LOG_HOME}/logback_debug.log</file>
+        <file>${LOG_HOME}/${APP_NAME}_debug.blog</file>
         <!-- 配置滚动的策略 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy" >
             <!-- 日志名称的格式 -->
-            <fileNamePattern>${LOG_HOME}/logback_debug-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_HOME}/${APP_NAME}_debug-%d{yyyy-MM-dd}.%i.blog</fileNamePattern>
             <maxFileSize>5MB</maxFileSize>      
-            <maxHistory>60</maxHistory>  
+            <maxHistory>360</maxHistory>  
             <totalSizeCap>200MB</totalSizeCap>  
         </rollingPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{50}[%L]: %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger[%L]: %msg%n</pattern>
         </encoder>
     </appender>
-
+    
     <appender name="INFOFILE" class="ch.qos.logback.core.rolling.RollingFileAppender" >
+         
      	<filter class="ch.qos.logback.classic.filter.LevelFilter">
             <level >info</level>
             <onMatch>ACCEPT</onMatch>  <!-- 如果命中就使用这条规则 -->
             <onMismatch>DENY</onMismatch>  <!-- 如果没有命中就 禁止这条日志-->
         </filter>
-        <file>${LOG_HOME}/logback_info.log</file>
+        <file>${LOG_HOME}/${APP_NAME}_info.blog</file>
         <!-- 配置滚动的策略 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy" >
             <!-- 日志名称的格式 -->
-            <fileNamePattern>${LOG_HOME}/logback_info-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_HOME}/${APP_NAME}_info-%d{yyyy-MM-dd}.%i.blog</fileNamePattern>
             <maxFileSize>5MB</maxFileSize>      
-            <maxHistory>60</maxHistory>  
+            <maxHistory>360</maxHistory>  
             <totalSizeCap>200MB</totalSizeCap>  
         </rollingPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{50}[%L]:  %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger[%L]:  %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+      <appender name="INFOPFILE" class="ch.qos.logback.core.rolling.RollingFileAppender" >
+     	<filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level >info</level>
+            <onMatch>ACCEPT</onMatch>  <!-- 如果命中就使用这条规则 -->
+            <onMismatch>DENY</onMismatch>  <!-- 如果没有命中就 禁止这条日志-->
+        </filter>
+        <file>${LOG_HOME}/${APP_NAME}_info_p.blog</file>
+        <!-- 配置滚动的策略 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy" >
+            <!-- 日志名称的格式 -->
+            <fileNamePattern>${LOG_HOME}/${APP_NAME}_info_p-%d{yyyy-MM-dd}.%i.blog</fileNamePattern>
+            <maxFileSize>5MB</maxFileSize>      
+            <maxHistory>360</maxHistory>  
+            <totalSizeCap>200MB</totalSizeCap>  
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger[%L]:  %msg%n</pattern>
+        </encoder>
+    </appender>
+    
+     <appender name="INFOMFILE" class="ch.qos.logback.core.rolling.RollingFileAppender" >
+        <!-- ch.qos.logback.classic.filter.ThresholdFilter( 临界值过滤器，过滤掉低于指定临界值的日志。) -->
+     	<filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level >info</level>
+            <onMatch>NEUTRAL</onMatch>  <!-- ACCEPT如果命中就使用这条规则, NEUTRAL如果命中继续往下(过滤器)走-->
+            <onMismatch>DENY</onMismatch>  <!-- 如果没有命中就 禁止这条日志-->
+        </filter>
+         <!-- 求值过滤器，评估、鉴别日志是否符合指定条件。 -->
+        <filter class="ch.qos.logback.core.filter.EvaluatorFilter"> 
+             <evaluator >
+             	<matcher>   
+          			<Name>odd</Name>   
+          			<!-- filter out odd numbered statements statement [13579]-->   
+          			<regex>hangzhou|billing</regex>   
+        		</matcher> 
+      	        <!-- message:日志的原始消息,formattedMessage:日志被各式化以后的最终消息 -->  
+        		<expression>(formattedMessage!=null &amp;&amp; odd.matches(formattedMessage)) || (marker!=null &amp;&amp; marker.getName()=="myMarker") ||  (formattedMessage!=null &amp;&amp; formattedMessage.contains("杭州"))</expression> 
+       	    </evaluator>   
+      		<OnMatch>ACCEPT</OnMatch>  
+      		<OnMismatch>DENY</OnMismatch> 
+    	</filter> 
+        <file>${LOG_HOME}/${APP_NAME}_info_m.blog</file>
+        <!-- 配置滚动的策略 -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy" >
+            <!-- 日志名称的格式 -->
+            <fileNamePattern>${LOG_HOME}/${APP_NAME}_info_m-%d{yyyy-MM-dd}.%i.blog</fileNamePattern>
+            <maxFileSize>5MB</maxFileSize>      
+            <maxHistory>360</maxHistory>  
+            <totalSizeCap>200MB</totalSizeCap>  
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger[%L]:  %msg%n</pattern>
         </encoder>
     </appender>
     
@@ -58,32 +118,36 @@
             <onMatch>ACCEPT</onMatch>  <!-- 如果命中就使用这条规则 -->
             <onMismatch>DENY</onMismatch>  <!-- 如果没有命中就 禁止这条日志-->
         </filter>
-        <file>${LOG_HOME}/logback_error.log</file>
+        <file>${LOG_HOME}/${APP_NAME}_error.blog</file>
         <!-- 配置滚动的策略 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy" >
             <!-- 日志名称的格式 -->
-            <fileNamePattern>${LOG_HOME}/logback_error-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <fileNamePattern>${LOG_HOME}/${APP_NAME}_error-%d{yyyy-MM-dd}.%i.blog</fileNamePattern>
             <maxFileSize>5MB</maxFileSize>      
-            <maxHistory>60</maxHistory>  
+            <maxHistory>360</maxHistory>  
             <totalSizeCap>200MB</totalSizeCap>  
         </rollingPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{50}[%L]: %n %msg%n</pattern>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger[%L]: %n %msg%n</pattern>
         </encoder>
     </appender>
 
-    <logger name="com.test" additivity="false" level="debug" >
-         <appender-ref ref="INFOFILE" />
+    <logger name="com.test.App" additivity="false" level="info" ><appender-ref ref="INFOFILE" /></logger>
+    <logger name="com.test.MyLogTestJava" additivity="false"  level="debug" >
+         <appender-ref ref="INFOMFILE" />
          <appender-ref ref="ERRORFILE" />
-         <appender-ref ref="DEBUGFILE" />
     </logger>
-
-    <!-- 相当于logger元素，只是name值已经确定为root了 -->
-    <root level="debug" >
-        <!-- -->
-        <appender-ref ref="STDOUT"  />  
+    <logger name="com.test.MyLogTestJava@p" additivity="false"  level="debug" >
+         <appender-ref ref="INFOPFILE" />
+    </logger>
+    <logger name="com.opensymphony.xwork2.util.OgnlUtil"  level="error" />
+    <logger name="org.springframework.scheduling.support.TaskUtils$LoggingErrorHandler"  level="off" />
+    <!--正式环境设置 error -->
+    <root level="info" >
+        <!-- 正式环境去掉 STDOUT -->
+        <appender-ref ref="STDOUT" />
         <appender-ref ref="INFOFILE" />
         <appender-ref ref="ERRORFILE" />
-        <appender-ref ref="DEBUGFILE" />
+       <!--   <appender-ref ref="DEBUGFILE" />  -->
     </root>
 </configuration>
